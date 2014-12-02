@@ -123,8 +123,17 @@
         NSData *urlData = [NSData dataWithContentsOfURL:url];
         
         if(urlData){
-            UIImage *image = [UIImage imageWithData:urlData];
-            NSLog(@"I haz the image");
+            //UIImage *image = [UIImage imageWithData:urlData];
+            //NSLog(@"I haz the image");
+            
+            //NSData *data = [[NSData alloc] initWithBytes:saves length:4];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *fileName = [NSString stringWithFormat:@"%@-%@.png",d.manufacturer,d.name];
+            NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
+            [urlData writeToFile:appFile atomically:YES];
+            
+            NSLog(@"Written to:%@",appFile);
         }
     }
 }
