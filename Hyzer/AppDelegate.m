@@ -92,7 +92,7 @@
     
     //http://www.inboundsdiscgolf.com/content/WebCharts/8994436.png
     
-    
+    [self processDiscs:discCatalog];
     
     
     
@@ -114,6 +114,22 @@
     
     return imgId;
 }
+
+- (void) processDiscs:(NSArray *) discs{
+    
+    for(Disc *d in discs){
+        NSString *stringURL = [NSString stringWithFormat:@"http://www.inboundsdiscgolf.com/content/WebCharts/%@.png",d.imageId];
+        NSURL  *url = [NSURL URLWithString:stringURL];
+        NSData *urlData = [NSData dataWithContentsOfURL:url];
+        
+        if(urlData){
+            UIImage *image = [UIImage imageWithData:urlData];
+            NSLog(@"I haz the image");
+        }
+    }
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
