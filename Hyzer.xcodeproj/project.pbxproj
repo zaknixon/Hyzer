@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62ED964EE9EBC82E50D7E82A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4810086B8AC2F96C3208A071 /* libPods.a */; };
+		F2CAC5131A2CF2600070F099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5121A2CF2600070F099 /* main.m */; };
+		F2CAC5161A2CF2600070F099 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5151A2CF2600070F099 /* AppDelegate.m */; };
+		F2CAC5191A2CF2600070F099 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5181A2CF2600070F099 /* ViewController.m */; };
+		F2CAC51C1A2CF2600070F099 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CAC51A1A2CF2600070F099 /* Main.storyboard */; };
+		F2CAC51E1A2CF2600070F099 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CAC51D1A2CF2600070F099 /* Images.xcassets */; };
+		F2CAC5211A2CF2600070F099 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CAC51F1A2CF2600070F099 /* LaunchScreen.xib */; };
+		F2CAC52D1A2CF2610070F099 /* HyzerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC52C1A2CF2610070F099 /* HyzerTests.m */; };
+		F2CAC53C1A2CF5250070F099 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5371A2CF5250070F099 /* TFHpple.m */; };
+		F2CAC53D1A2CF5250070F099 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5391A2CF5250070F099 /* TFHppleElement.m */; };
+		F2CAC5411A2CF6780070F099 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5401A2CF6780070F099 /* XPathQuery.m */; };
+		F2CAC5431A2CF6EB0070F099 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CAC5421A2CF6EB0070F099 /* libxml2.dylib */; };
+		F2CAC5461A2CF7AC0070F099 /* Disc.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5451A2CF7AC0070F099 /* Disc.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2CAC5271A2CF2610070F099 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2CAC5051A2CF2600070F099 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2CAC50C1A2CF2600070F099;
+			remoteInfo = Hyzer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4810086B8AC2F96C3208A071 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC6503D012FCCD083DCA7CA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B832DB1339EF4B8D3F7C93C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F2CAC50D1A2CF2600070F099 /* Hyzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CAC5111A2CF2600070F099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2CAC5121A2CF2600070F099 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F2CAC5141A2CF2600070F099 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F2CAC5151A2CF2600070F099 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F2CAC5171A2CF2600070F099 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F2CAC5181A2CF2600070F099 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F2CAC51B1A2CF2600070F099 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2CAC51D1A2CF2600070F099 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F2CAC5201A2CF2600070F099 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F2CAC5261A2CF2610070F099 /* HyzerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HyzerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CAC52B1A2CF2610070F099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2CAC52C1A2CF2610070F099 /* HyzerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HyzerTests.m; sourceTree = "<group>"; };
+		F2CAC5361A2CF5250070F099 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		F2CAC5371A2CF5250070F099 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		F2CAC5381A2CF5250070F099 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		F2CAC5391A2CF5250070F099 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		F2CAC53F1A2CF6780070F099 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		F2CAC5401A2CF6780070F099 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		F2CAC5421A2CF6EB0070F099 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F2CAC5441A2CF7AC0070F099 /* Disc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Disc.h; sourceTree = "<group>"; };
+		F2CAC5451A2CF7AC0070F099 /* Disc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Disc.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2CAC50A1A2CF2600070F099 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CAC5431A2CF6EB0070F099 /* libxml2.dylib in Frameworks */,
+				62ED964EE9EBC82E50D7E82A /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CAC5231A2CF2610070F099 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DEBDCABE5D31AE3A1704F07 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B832DB1339EF4B8D3F7C93C7 /* Pods.debug.xcconfig */,
+				AC6503D012FCCD083DCA7CA5 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A9E114EADEF3691F7FBE44EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC5421A2CF6EB0070F099 /* libxml2.dylib */,
+				4810086B8AC2F96C3208A071 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2CAC5041A2CF2600070F099 = {
+			isa = PBXGroup;
+			children = (
+				F2CAC50F1A2CF2600070F099 /* Hyzer */,
+				F2CAC5291A2CF2610070F099 /* HyzerTests */,
+				F2CAC50E1A2CF2600070F099 /* Products */,
+				0DEBDCABE5D31AE3A1704F07 /* Pods */,
+				A9E114EADEF3691F7FBE44EA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F2CAC50E1A2CF2600070F099 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC50D1A2CF2600070F099 /* Hyzer.app */,
+				F2CAC5261A2CF2610070F099 /* HyzerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2CAC50F1A2CF2600070F099 /* Hyzer */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC53F1A2CF6780070F099 /* XPathQuery.h */,
+				F2CAC5401A2CF6780070F099 /* XPathQuery.m */,
+				F2CAC5361A2CF5250070F099 /* TFHpple.h */,
+				F2CAC5371A2CF5250070F099 /* TFHpple.m */,
+				F2CAC5381A2CF5250070F099 /* TFHppleElement.h */,
+				F2CAC5391A2CF5250070F099 /* TFHppleElement.m */,
+				F2CAC5141A2CF2600070F099 /* AppDelegate.h */,
+				F2CAC5151A2CF2600070F099 /* AppDelegate.m */,
+				F2CAC5171A2CF2600070F099 /* ViewController.h */,
+				F2CAC5181A2CF2600070F099 /* ViewController.m */,
+				F2CAC51A1A2CF2600070F099 /* Main.storyboard */,
+				F2CAC51D1A2CF2600070F099 /* Images.xcassets */,
+				F2CAC51F1A2CF2600070F099 /* LaunchScreen.xib */,
+				F2CAC5101A2CF2600070F099 /* Supporting Files */,
+				F2CAC5441A2CF7AC0070F099 /* Disc.h */,
+				F2CAC5451A2CF7AC0070F099 /* Disc.m */,
+			);
+			path = Hyzer;
+			sourceTree = "<group>";
+		};
+		F2CAC5101A2CF2600070F099 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC5111A2CF2600070F099 /* Info.plist */,
+				F2CAC5121A2CF2600070F099 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F2CAC5291A2CF2610070F099 /* HyzerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC52C1A2CF2610070F099 /* HyzerTests.m */,
+				F2CAC52A1A2CF2610070F099 /* Supporting Files */,
+			);
+			path = HyzerTests;
+			sourceTree = "<group>";
+		};
+		F2CAC52A1A2CF2610070F099 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC52B1A2CF2610070F099 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2CAC50C1A2CF2600070F099 /* Hyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CAC5301A2CF2610070F099 /* Build configuration list for PBXNativeTarget "Hyzer" */;
+			buildPhases = (
+				2EF0867B09C5759D6380CFA0 /* Check Pods Manifest.lock */,
+				F2CAC5091A2CF2600070F099 /* Sources */,
+				F2CAC50A1A2CF2600070F099 /* Frameworks */,
+				F2CAC50B1A2CF2600070F099 /* Resources */,
+				1D8C9A54E2D506452F1E62C5 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hyzer;
+			productName = Hyzer;
+			productReference = F2CAC50D1A2CF2600070F099 /* Hyzer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2CAC5251A2CF2610070F099 /* HyzerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CAC5331A2CF2610070F099 /* Build configuration list for PBXNativeTarget "HyzerTests" */;
+			buildPhases = (
+				F2CAC5221A2CF2610070F099 /* Sources */,
+				F2CAC5231A2CF2610070F099 /* Frameworks */,
+				F2CAC5241A2CF2610070F099 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2CAC5281A2CF2610070F099 /* PBXTargetDependency */,
+			);
+			name = HyzerTests;
+			productName = HyzerTests;
+			productReference = F2CAC5261A2CF2610070F099 /* HyzerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2CAC5051A2CF2600070F099 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Zak Nixon";
+				TargetAttributes = {
+					F2CAC50C1A2CF2600070F099 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					F2CAC5251A2CF2610070F099 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = F2CAC50C1A2CF2600070F099;
+					};
+				};
+			};
+			buildConfigurationList = F2CAC5081A2CF2600070F099 /* Build configuration list for PBXProject "Hyzer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2CAC5041A2CF2600070F099;
+			productRefGroup = F2CAC50E1A2CF2600070F099 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2CAC50C1A2CF2600070F099 /* Hyzer */,
+				F2CAC5251A2CF2610070F099 /* HyzerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2CAC50B1A2CF2600070F099 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CAC51C1A2CF2600070F099 /* Main.storyboard in Resources */,
+				F2CAC5211A2CF2600070F099 /* LaunchScreen.xib in Resources */,
+				F2CAC51E1A2CF2600070F099 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CAC5241A2CF2610070F099 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D8C9A54E2D506452F1E62C5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2EF0867B09C5759D6380CFA0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2CAC5091A2CF2600070F099 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CAC5191A2CF2600070F099 /* ViewController.m in Sources */,
+				F2CAC5161A2CF2600070F099 /* AppDelegate.m in Sources */,
+				F2CAC5131A2CF2600070F099 /* main.m in Sources */,
+				F2CAC53C1A2CF5250070F099 /* TFHpple.m in Sources */,
+				F2CAC5411A2CF6780070F099 /* XPathQuery.m in Sources */,
+				F2CAC5461A2CF7AC0070F099 /* Disc.m in Sources */,
+				F2CAC53D1A2CF5250070F099 /* TFHppleElement.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CAC5221A2CF2610070F099 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CAC52D1A2CF2610070F099 /* HyzerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2CAC5281A2CF2610070F099 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2CAC50C1A2CF2600070F099 /* Hyzer */;
+			targetProxy = F2CAC5271A2CF2610070F099 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F2CAC51A1A2CF2600070F099 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CAC51B1A2CF2600070F099 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F2CAC51F1A2CF2600070F099 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CAC5201A2CF2600070F099 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F2CAC52E1A2CF2610070F099 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F2CAC52F1A2CF2610070F099 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2CAC5311A2CF2610070F099 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B832DB1339EF4B8D3F7C93C7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = Hyzer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F2CAC5321A2CF2610070F099 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC6503D012FCCD083DCA7CA5 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = Hyzer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F2CAC5341A2CF2610070F099 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HyzerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hyzer.app/Hyzer";
+			};
+			name = Debug;
+		};
+		F2CAC5351A2CF2610070F099 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HyzerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hyzer.app/Hyzer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2CAC5081A2CF2600070F099 /* Build configuration list for PBXProject "Hyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CAC52E1A2CF2610070F099 /* Debug */,
+				F2CAC52F1A2CF2610070F099 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CAC5301A2CF2610070F099 /* Build configuration list for PBXNativeTarget "Hyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CAC5311A2CF2610070F099 /* Debug */,
+				F2CAC5321A2CF2610070F099 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CAC5331A2CF2610070F099 /* Build configuration list for PBXNativeTarget "HyzerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CAC5341A2CF2610070F099 /* Debug */,
+				F2CAC5351A2CF2610070F099 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2CAC5051A2CF2600070F099 /* Project object */;
+}
