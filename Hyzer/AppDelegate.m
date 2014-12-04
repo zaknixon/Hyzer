@@ -30,7 +30,7 @@
     NSArray *supportedFilters = [CIFilter filterNamesInCategory:kCICategoryBuiltIn];
     for (CIFilter *filter in supportedFilters) {
         NSString *string = [NSString stringWithFormat:@"%@",[[CIFilter filterWithName:(NSString *)filter] inputKeys]];
-        NSLog(@"%@ %@", filter, string);
+       // NSLog(@"%@ %@", filter, string);
     }
     
     NSURL *url = [NSURL URLWithString:@"http://www.inboundsdiscgolf.com/content/?page_id=431"];
@@ -96,10 +96,10 @@
     }
     
     for(Disc *d in discCatalog){
-        NSLog(@"Name of disc:%@ with id:%@",d.name,d.imageId);
+        //NSLog(@"Name of disc:%@ with id:%@",d.name,d.imageId);
     }
     
-    NSLog(@"Number of discs:%i",(unsigned long)[discCatalog count]);
+    //NSLog(@"Number of discs:%i",(unsigned long)[discCatalog count]);
     
     //http://www.inboundsdiscgolf.com/content/WebCharts/8994436.png
     
@@ -145,7 +145,7 @@
             NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
             [urlData writeToFile:appFile atomically:YES];
             
-            NSLog(@"Written to:%@",appFile);
+            //NSLog(@"Written to:%@",appFile);
             
             CIFilter *exposure = [CIFilter filterWithName:@"CIExposureAdjust"];
             [exposure setDefaults];
@@ -217,7 +217,7 @@
             fileName = [NSString stringWithFormat:@"%@-%@44.png",d.manufacturer,d.name];
             appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
             [imageData writeToFile:appFile atomically:YES];
-            NSLog(@"Written to:%@",appFile);
+            //NSLog(@"Written to:%@",appFile);
             
             [self logPixelsOfImage:newImage];
             
@@ -264,40 +264,55 @@
         y = 0;
         for (NSUInteger i = 0; i < width; i++) {
             UInt32 color = *currentPixel;
-            
-            if(finalX != 0){
-                startX = 0; endX = 0;finalX = 0;
-            }
+//            previousColor = color;
+//            
+//            if(finalX != 0){
+//                startX = 0; endX = 0;finalX = 0;
+//            }
             
             float brightness = (R(color)+G(color)+B(color))/3.0;
             if(i < 30 && height-j < 30){
                 //printf("%3.0f ",255.0);
+                continue;
             }else{
                 //printf("%3.0f ", brightness);
             }
             
-            if(brightness < 255.0){
+            if((brightness < 255.0 && brightness != 0)){
                 y = j;
                 
                 if(startX == 0){
                     startX = i;
+                    NSLog(@"Starting:(%lu,%lu,%f)",startX,j,brightness);
+                }else{
+                    NSLog(@"Between:(%lu,%lu,%f)",i,j,brightness);
                 }
+                
             }
             
-            if(brightness == 255.0 && startX != 0.0){
+            if(brightness == 255.0 && startX != 0){
                 endX = i;
                 
-                NSUInteger median =  ((endX - startX) / 2);
-                finalX = startX + median;
-                
-                brightness = (R(previousColor)+G(previousColor)+B(previousColor))/3.0;
-                if(finalX != 0){
-                    NSLog(@"Coordinate:(%lu,%lu) = %f",(unsigned long)finalX,(unsigned long)j,brightness);
-                }
+                NSLog(@"Ending:(%lu,%lu,%f)",endX,j,brightness);
+//                NSUInteger median =  ((endX - startX) / 2);
+//                finalX = startX + median;
+//                
+//                previousColor -= median;
+//                brightness = (R(previousColor)+G(previousColor)+B(previousColor))/3.0;
+//                if(finalX != 0){
+//                    
+//                    if(brightness == 0.0){
+//                        int x = 0;
+//                    }else{
+//                        NSLog(@"Coordinate:(%lu,%lu) = %f",(unsigned long)finalX,(unsigned long)j,brightness);
+//                    }
+//                }
+                startX = 0;
+                endX = 0;
             }
             
             
-            previousColor = *currentPixel;
+            
             currentPixel++;
         }
         printf("\n");
