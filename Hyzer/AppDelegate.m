@@ -254,7 +254,6 @@
 #define B(x) ( Mask8(x >> 16) )
     
     // 2. Iterate and log!
-    NSLog(@"Brightness of image:");
     UInt32 * currentPixel = pixels;
     NSUInteger y =0;
     for (NSUInteger j = 0; j < height; j++) {
@@ -264,18 +263,10 @@
         y = 0;
         for (NSUInteger i = 0; i < width; i++) {
             UInt32 color = *currentPixel;
-//            previousColor = color;
-//            
-//            if(finalX != 0){
-//                startX = 0; endX = 0;finalX = 0;
-//            }
             
             float brightness = (R(color)+G(color)+B(color))/3.0;
             if(i < 30 && height-j < 30){
-                //printf("%3.0f ",255.0);
                 continue;
-            }else{
-                //printf("%3.0f ", brightness);
             }
             
             if((brightness < 255.0 && brightness != 0)){
@@ -283,9 +274,6 @@
                 
                 if(startX == 0){
                     startX = i;
-                    NSLog(@"Starting:(%lu,%lu,%f)",startX,j,brightness);
-                }else{
-                    NSLog(@"Between:(%lu,%lu,%f)",i,j,brightness);
                 }
                 
             }
@@ -293,29 +281,15 @@
             if(brightness == 255.0 && startX != 0){
                 endX = i;
                 
-                NSLog(@"Ending:(%lu,%lu,%f)",endX,j,brightness);
-//                NSUInteger median =  ((endX - startX) / 2);
-//                finalX = startX + median;
-//                
-//                previousColor -= median;
-//                brightness = (R(previousColor)+G(previousColor)+B(previousColor))/3.0;
-//                if(finalX != 0){
-//                    
-//                    if(brightness == 0.0){
-//                        int x = 0;
-//                    }else{
-//                        NSLog(@"Coordinate:(%lu,%lu) = %f",(unsigned long)finalX,(unsigned long)j,brightness);
-//                    }
-//                }
+                NSUInteger median =  ((endX - startX) / 2);
+                finalX = startX + median;
+                NSLog(@" %lu   %lu",finalX,j);
+
                 startX = 0;
                 endX = 0;
             }
-            
-            
-            
             currentPixel++;
         }
-        printf("\n");
     }
     
     free(pixels);
