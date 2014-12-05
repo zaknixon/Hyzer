@@ -20,6 +20,7 @@
 		F2CAC5411A2CF6780070F099 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5401A2CF6780070F099 /* XPathQuery.m */; };
 		F2CAC5431A2CF6EB0070F099 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CAC5421A2CF6EB0070F099 /* libxml2.dylib */; };
 		F2CAC5461A2CF7AC0070F099 /* Disc.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5451A2CF7AC0070F099 /* Disc.m */; };
+		F2D24E151A32032000046005 /* DiscInformationRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D24E141A32032000046005 /* DiscInformationRetriever.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		F2CAC5421A2CF6EB0070F099 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F2CAC5441A2CF7AC0070F099 /* Disc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Disc.h; sourceTree = "<group>"; };
 		F2CAC5451A2CF7AC0070F099 /* Disc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Disc.m; sourceTree = "<group>"; };
+		F2D24E131A32032000046005 /* DiscInformationRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscInformationRetriever.h; sourceTree = "<group>"; };
+		F2D24E141A32032000046005 /* DiscInformationRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscInformationRetriever.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,12 +124,8 @@
 		F2CAC50F1A2CF2600070F099 /* Hyzer */ = {
 			isa = PBXGroup;
 			children = (
-				F2CAC53F1A2CF6780070F099 /* XPathQuery.h */,
-				F2CAC5401A2CF6780070F099 /* XPathQuery.m */,
-				F2CAC5361A2CF5250070F099 /* TFHpple.h */,
-				F2CAC5371A2CF5250070F099 /* TFHpple.m */,
-				F2CAC5381A2CF5250070F099 /* TFHppleElement.h */,
-				F2CAC5391A2CF5250070F099 /* TFHppleElement.m */,
+				F2D24E121A32030200046005 /* Business */,
+				F2D24E111A3202DF00046005 /* vendors */,
 				F2CAC5141A2CF2600070F099 /* AppDelegate.h */,
 				F2CAC5151A2CF2600070F099 /* AppDelegate.m */,
 				F2CAC5171A2CF2600070F099 /* ViewController.h */,
@@ -165,6 +164,36 @@
 				F2CAC52B1A2CF2610070F099 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F2D24E101A3202CE00046005 /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				F2CAC53F1A2CF6780070F099 /* XPathQuery.h */,
+				F2CAC5401A2CF6780070F099 /* XPathQuery.m */,
+				F2CAC5361A2CF5250070F099 /* TFHpple.h */,
+				F2CAC5371A2CF5250070F099 /* TFHpple.m */,
+				F2CAC5381A2CF5250070F099 /* TFHppleElement.h */,
+				F2CAC5391A2CF5250070F099 /* TFHppleElement.m */,
+			);
+			name = Hpple;
+			sourceTree = "<group>";
+		};
+		F2D24E111A3202DF00046005 /* vendors */ = {
+			isa = PBXGroup;
+			children = (
+				F2D24E101A3202CE00046005 /* Hpple */,
+			);
+			name = vendors;
+			sourceTree = "<group>";
+		};
+		F2D24E121A32030200046005 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				F2D24E131A32032000046005 /* DiscInformationRetriever.h */,
+				F2D24E141A32032000046005 /* DiscInformationRetriever.m */,
+			);
+			name = Business;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +337,7 @@
 				F2CAC53C1A2CF5250070F099 /* TFHpple.m in Sources */,
 				F2CAC5411A2CF6780070F099 /* XPathQuery.m in Sources */,
 				F2CAC5461A2CF7AC0070F099 /* Disc.m in Sources */,
+				F2D24E151A32032000046005 /* DiscInformationRetriever.m in Sources */,
 				F2CAC53D1A2CF5250070F099 /* TFHppleElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

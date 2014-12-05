@@ -11,6 +11,7 @@
 #import <AFNetworking/AFHTTPRequestOperationManager.h>
 #import "TFHpple.h"
 #import "Disc.h"
+#import "DiscInformationRetriever.h"
 
 @interface AppDelegate ()
 
@@ -25,105 +26,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    NSArray *supportedFilters = [CIFilter filterNamesInCategory:kCICategoryBuiltIn];
-    for (CIFilter *filter in supportedFilters) {
-        NSString *string = [NSString stringWithFormat:@"%@",[[CIFilter filterWithName:(NSString *)filter] inputKeys]];
-       // NSLog(@"%@ %@", filter, string);
-    }
-    
-    NSURL *url = [NSURL URLWithString:@"http://www.inboundsdiscgolf.com/content/?page_id=431"];
-    NSData *flightDataPage = [NSData dataWithContentsOfURL:url];
-    TFHpple *flightPathDataParser = [TFHpple hppleWithHTMLData:flightDataPage];
-    
-    NSString *queryStr = @"//table[@id='inFlightGuide']/tbody/td"; // Getting all the td tags
-    
-    NSArray *tableRows = [flightPathDataParser searchWithXPathQuery:queryStr];
-    
-    int numberOfElementsPerDisc = 7;
-    int counter = 0;
-    Disc *currentDisc;
-    
-    NSMutableArray *discCatalog = [NSMutableArray array];
-    for(TFHppleElement *element in tableRows){
-        
-        if(counter > numberOfElementsPerDisc){
-            counter = 0;
-        }
-    
-        if(counter == 0){
-            currentDisc = [[Disc alloc] init];
-            [discCatalog addObject:currentDisc];
-        }
-        
-        NSString *metadata = [[element firstChild] content];
-        
-        switch (counter) {
-            case 0:
-                currentDisc.name = metadata;
-                break;
-            case 1:
-                currentDisc.manufacturer = metadata;
-                break;
-            case 2:
-                currentDisc.type = metadata;
-                break;
-            case 3:
-                currentDisc.distance = metadata;
-                break;
-            case 4:
-                currentDisc.hst = metadata;
-                break;
-            case 5:
-                currentDisc.lsf = metadata;
-                break;
-            case 6:
-                currentDisc.net = metadata;
-                break;
-            case 7:
-                // Extract the id
-                currentDisc.imageId = [self extractImageIdFromElement:element];
-                
-                
-                break;
-            default:
-                break;
-        }
-        
-        counter++;
-        
-    }
-    
-    for(Disc *d in discCatalog){
-        //NSLog(@"Name of disc:%@ with id:%@",d.name,d.imageId);
-    }
-    
-    //NSLog(@"Number of discs:%i",(unsigned long)[discCatalog count]);
-    
-    //http://www.inboundsdiscgolf.com/content/WebCharts/8994436.png
-    
-    [self processDiscs:discCatalog];
-    
-    
+    DiscInformationRetriever *retriever = [[DiscInformationRetriever alloc] init];
+    [retriever retrieveDiscsAndPerformBlock:^(NSArray *discs) {
+        [self processDiscs:discs];
+    }];
     
     return YES;
-}
-
-// Note: Very fragile.
-- (NSString *) extractImageIdFromElement:(TFHppleElement *)element{
-    
-    NSArray *children = [element children];
-    TFHppleElement *targetChild = children[1];
-    NSDictionary *attribs = [targetChild attributes];
-    NSString *imgId = attribs[@"href"];
-    
-    if(imgId){
-        imgId = [imgId componentsSeparatedByString:@","][1];
-        imgId = [imgId substringWithRange:NSMakeRange(1, 7)];
-    }
-    
-    return imgId;
 }
 
 - (void) processDiscs:(NSArray *) discs{
@@ -136,57 +45,22 @@
         if(urlData){
             
             UIImage *image = [UIImage imageWithData:urlData];
-            //NSLog(@"I haz the image");
-            
-            //NSData *data = [[NSData alloc] initWithBytes:saves length:4];
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentsDirectory = [paths objectAtIndex:0];
             NSString *fileName = [NSString stringWithFormat:@"%@-%@.png",d.manufacturer,d.name];
             NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
             [urlData writeToFile:appFile atomically:YES];
             
-            //NSLog(@"Written to:%@",appFile);
-            
             CIFilter *exposure = [CIFilter filterWithName:@"CIExposureAdjust"];
             [exposure setDefaults];
             [exposure setValue:[[CIImage alloc] initWithImage:image] forKey:kCIInputImageKey];
             [exposure setValue:@0.9 forKey:@"inputEV"];
             CIImage *result = [exposure valueForKey: kCIOutputImageKey];
-            
-            
-//            Adapts the reference white point for an image.
-//                
-//                Localized Display Name
-//                Temperature and Tint
-//                
-//                Parameters
-//                inputImage
-//                A CIImage object whose display name is Image.
-//                inputNeutral
-//                A CIVector object whose attribute type is CIAttributeTypeOffset and whose display name is Neutral.
-//                
-//                Default value: [6500, 0]
-//                inputTargetNeutral	
-//                A CIVector object whose attribute type is CIAttributeTypeOffset and whose display name is TargetNeutral
-//                
-//                Default value: [6500, 0]
-//            CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-//            CIFilter *tempAndTint = [CIFilter filterWithName:@"CITemperatureAndTint"];
-//            [tempAndTint setDefaults];
-//            [tempAndTint setValue:ciImage forKey:kCIInputImageKey];
-//            [tempAndTint setValue:[CIVector vectorWithX:6000 Y:0] forKey:@"inputNeutral"];
-//            result = [tempAndTint valueForKey: kCIOutputImageKey];
-            //image = [[UIImage alloc] initWithCIImage:result];
-            
-            
-//            float intensity= 0.5;
-            //ciImage = [[CIImage alloc] initWithImage:image];
+     
             for(int i = 0; i < 45; i++){
             CIFilter *lighten = [CIFilter filterWithName:@"CIColorControls"];
             [lighten setDefaults];
             [lighten setValue:result forKey:kCIInputImageKey];
-//            //[lighten setValue:@(1 - intensity) forKey:@"inputBrightness"];
-            //[lighten setValue:@0.2 forKey:@"inputSaturation"];
             [lighten setValue:@1.3 forKey:@"inputContrast"];
             result = [lighten valueForKey: kCIOutputImageKey];
             
@@ -196,7 +70,6 @@
                 CIFilter *sepia = [CIFilter filterWithName:@"CISepiaTone"];
                 [sepia setValue:[[CIImage alloc] initWithImage:image] forKey:kCIInputImageKey];
                 [sepia setValue:@(0.75) forKey:@"inputIntensity"];
-                //result = [sepia valueForKey: kCIOutputImageKey];
             }
             
             image = [UIImage imageWithCIImage:result];
@@ -217,10 +90,8 @@
             fileName = [NSString stringWithFormat:@"%@-%@44.png",d.manufacturer,d.name];
             appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
             [imageData writeToFile:appFile atomically:YES];
-            //NSLog(@"Written to:%@",appFile);
             
             [self logPixelsOfImage:newImage];
-            
         }
     }
 }
