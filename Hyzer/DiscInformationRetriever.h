@@ -10,4 +10,6 @@
 
 @interface DiscInformationRetriever : NSObject
 
+- (void) retrieveDiscsAndPerformBlock:(void(^)(NSArray *discs)) completion;
+
 @end
