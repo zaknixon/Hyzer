@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Disc : NSObject
 
@@ -18,5 +19,5 @@
 @property (nonatomic,strong) NSString *lsf;
 @property (nonatomic,strong) NSString *net;
 @property (nonatomic,strong) NSString *imageId;
-
+@property (nonatomic,strong) UIImage  *flightPathImage;
 @end

@@ -10,4 +10,8 @@
 
 @implementation Disc
 
+- (NSString *)description{
+    NSString *d = [NSString stringWithFormat:@"%@-%@",self.manufacturer,self.name];
+    return d;
+}
 @end

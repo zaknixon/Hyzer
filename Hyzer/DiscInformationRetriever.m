@@ -14,6 +14,7 @@
 
 #define MAIN_PAGE_URL @"http://www.inboundsdiscgolf.com/content/?page_id=431"
 #define DISC_QUERY_XPATH @"//table[@id='inFlightGuide']/tbody/td"
+#define IMAGE_URL @"http://www.inboundsdiscgolf.com/content/WebCharts/%@.png"
 
 @implementation DiscInformationRetriever
 
@@ -74,6 +75,15 @@
         
         counter++;
     }
+    
+    for(Disc *d in discCatalog){
+        NSString *stringURL = [NSString stringWithFormat:IMAGE_URL,d.imageId];
+        NSURL  *url = [NSURL URLWithString:stringURL];
+        NSData *urlData = [NSData dataWithContentsOfURL:url];
+        currentDisc.flightPathImage = [UIImage imageWithData:urlData];
+        NSLog(@"Data pulled for %@-%@",d.manufacturer,d.name);
+    }
+    
     completion(discCatalog);
 }
 
