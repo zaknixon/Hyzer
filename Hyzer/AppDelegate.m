@@ -12,6 +12,9 @@
 #import "TFHpple.h"
 #import "Disc.h"
 #import "DiscInformationRetriever.h"
+#import "DiscImageTransformer.h"
+#import "DiscPathLocator.h"
+#import "DiscPathWriter.h"
 
 @interface AppDelegate ()
 
@@ -29,71 +32,87 @@
     
     DiscInformationRetriever *retriever = [[DiscInformationRetriever alloc] init];
     [retriever retrieveDiscsAndPerformBlock:^(NSArray *discs) {
-        [self processDiscs:discs];
+        
+        DiscImageTransformer *transformer = [[DiscImageTransformer alloc] init];
+        for(Disc *disc in discs){
+            UIImage *transformedImage = [transformer transform:disc.flightPathImage];
+            
+            NSLog(@"Disc image was transformed for disc [%@-%@]",disc.manufacturer,disc.name);
+            
+            DiscPathLocator *pathLocator = [[DiscPathLocator alloc] init];
+            NSArray *coordinates = [pathLocator pathContainedInImage:transformedImage];
+            
+            DiscPathWriter *pathWriter = [[DiscPathWriter alloc] init];
+            NSString *path = [NSString stringWithFormat:@"%@-%@.json",disc.manufacturer,disc.name];
+            [pathWriter writeDisc:disc withCoordinates:coordinates toPath:path];
+        }
     }];
+    
+    
+    
     
     return YES;
 }
 
 - (void) processDiscs:(NSArray *) discs{
-    
-    for(Disc *d in discs){
-        NSString *stringURL = [NSString stringWithFormat:@"http://www.inboundsdiscgolf.com/content/WebCharts/%@.png",d.imageId];
-        NSURL  *url = [NSURL URLWithString:stringURL];
-        NSData *urlData = [NSData dataWithContentsOfURL:url];
-        
-        if(urlData){
-            
-            UIImage *image = [UIImage imageWithData:urlData];
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *fileName = [NSString stringWithFormat:@"%@-%@.png",d.manufacturer,d.name];
-            NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
-            [urlData writeToFile:appFile atomically:YES];
-            
-            CIFilter *exposure = [CIFilter filterWithName:@"CIExposureAdjust"];
-            [exposure setDefaults];
-            [exposure setValue:[[CIImage alloc] initWithImage:image] forKey:kCIInputImageKey];
-            [exposure setValue:@0.9 forKey:@"inputEV"];
-            CIImage *result = [exposure valueForKey: kCIOutputImageKey];
-     
-            for(int i = 0; i < 45; i++){
-            CIFilter *lighten = [CIFilter filterWithName:@"CIColorControls"];
-            [lighten setDefaults];
-            [lighten setValue:result forKey:kCIInputImageKey];
-            [lighten setValue:@1.3 forKey:@"inputContrast"];
-            result = [lighten valueForKey: kCIOutputImageKey];
-            
-            }
-
-            for(int i = 0; i < 15; i++){
-                CIFilter *sepia = [CIFilter filterWithName:@"CISepiaTone"];
-                [sepia setValue:[[CIImage alloc] initWithImage:image] forKey:kCIInputImageKey];
-                [sepia setValue:@(0.75) forKey:@"inputIntensity"];
-            }
-            
-            image = [UIImage imageWithCIImage:result];
-
-            UIGraphicsBeginImageContext(image.size);
-            [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            CGRect cropRect = CGRectMake(27,20,newImage.size.width-49,newImage.size.height-45);
-            CGImageRef cgImage = [newImage CGImage];
-            CGImageRef imageRef = CGImageCreateWithImageInRect(cgImage, cropRect);
-            // or use the UIImage wherever you like
-            newImage = [UIImage imageWithCGImage:imageRef];
-            CGImageRelease(imageRef);
-            
-            NSData *imageData = UIImagePNGRepresentation(newImage);
-            fileName = [NSString stringWithFormat:@"%@-%@44.png",d.manufacturer,d.name];
-            appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
-            [imageData writeToFile:appFile atomically:YES];
-            
-            [self logPixelsOfImage:newImage];
-        }
-    }
+//    
+//    for(Disc *d in discs){
+//        NSString *stringURL = [NSString stringWithFormat:@"http://www.inboundsdiscgolf.com/content/WebCharts/%@.png",d.imageId];
+//        NSURL  *url = [NSURL URLWithString:stringURL];
+//        NSData *urlData = [NSData dataWithContentsOfURL:url];
+//        
+//        if(urlData){
+//            
+//            UIImage *image = [UIImage imageWithData:urlData];
+//            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//            NSString *documentsDirectory = [paths objectAtIndex:0];
+//            NSString *fileName = [NSString stringWithFormat:@"%@-%@.png",d.manufacturer,d.name];
+//            NSString *appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
+//            [urlData writeToFile:appFile atomically:YES];
+//            
+//            CIFilter *exposure = [CIFilter filterWithName:@"CIExposureAdjust"];
+//            [exposure setDefaults];
+//            [exposure setValue:[[CIImage alloc] initWithImage:image] forKey:kCIInputImageKey];
+//            [exposure setValue:@0.9 forKey:@"inputEV"];
+//            CIImage *result = [exposure valueForKey: kCIOutputImageKey];
+//     
+//            for(int i = 0; i < 45; i++){
+//            CIFilter *lighten = [CIFilter filterWithName:@"CIColorControls"];
+//            [lighten setDefaults];
+//            [lighten setValue:result forKey:kCIInputImageKey];
+//            [lighten setValue:@1.3 forKey:@"inputContrast"];
+//            result = [lighten valueForKey: kCIOutputImageKey];
+//            
+//            }
+//
+//            for(int i = 0; i < 15; i++){
+//                CIFilter *sepia = [CIFilter filterWithName:@"CISepiaTone"];
+//                [sepia setValue:[[CIImage alloc] initWithImage:image] forKey:kCIInputImageKey];
+//                [sepia setValue:@(0.75) forKey:@"inputIntensity"];
+//            }
+//            
+//            image = [UIImage imageWithCIImage:result];
+//
+//            UIGraphicsBeginImageContext(image.size);
+//            [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+//            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
+//            
+//            CGRect cropRect = CGRectMake(27,20,newImage.size.width-49,newImage.size.height-45);
+//            CGImageRef cgImage = [newImage CGImage];
+//            CGImageRef imageRef = CGImageCreateWithImageInRect(cgImage, cropRect);
+//            // or use the UIImage wherever you like
+//            newImage = [UIImage imageWithCGImage:imageRef];
+//            CGImageRelease(imageRef);
+//            
+//            NSData *imageData = UIImagePNGRepresentation(newImage);
+//            fileName = [NSString stringWithFormat:@"%@-%@44.png",d.manufacturer,d.name];
+//            appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
+//            [imageData writeToFile:appFile atomically:YES];
+//            
+//            [self logPixelsOfImage:newImage];
+//        }
+//    }
 }
 
 - (void)logPixelsOfImage:(UIImage*)image {

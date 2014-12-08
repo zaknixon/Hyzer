@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		62ED964EE9EBC82E50D7E82A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4810086B8AC2F96C3208A071 /* libPods.a */; };
+		F20BC0901A35FC5B00848655 /* DiscImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F20BC08F1A35FC5B00848655 /* DiscImageTransformer.m */; };
+		F20BC0931A36078F00848655 /* DiscPathLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = F20BC0921A36078F00848655 /* DiscPathLocator.m */; };
+		F20BC0961A36091300848655 /* DiscPathWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F20BC0951A36091300848655 /* DiscPathWriter.m */; };
 		F2CAC5131A2CF2600070F099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5121A2CF2600070F099 /* main.m */; };
 		F2CAC5161A2CF2600070F099 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5151A2CF2600070F099 /* AppDelegate.m */; };
 		F2CAC5191A2CF2600070F099 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAC5181A2CF2600070F099 /* ViewController.m */; };
@@ -37,6 +40,12 @@
 		4810086B8AC2F96C3208A071 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC6503D012FCCD083DCA7CA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B832DB1339EF4B8D3F7C93C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F20BC08E1A35FC5B00848655 /* DiscImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscImageTransformer.h; sourceTree = "<group>"; };
+		F20BC08F1A35FC5B00848655 /* DiscImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscImageTransformer.m; sourceTree = "<group>"; };
+		F20BC0911A36078F00848655 /* DiscPathLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscPathLocator.h; sourceTree = "<group>"; };
+		F20BC0921A36078F00848655 /* DiscPathLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscPathLocator.m; sourceTree = "<group>"; };
+		F20BC0941A36091300848655 /* DiscPathWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscPathWriter.h; sourceTree = "<group>"; };
+		F20BC0951A36091300848655 /* DiscPathWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscPathWriter.m; sourceTree = "<group>"; };
 		F2CAC50D1A2CF2600070F099 /* Hyzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hyzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CAC5111A2CF2600070F099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2CAC5121A2CF2600070F099 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -192,6 +201,12 @@
 			children = (
 				F2D24E131A32032000046005 /* DiscInformationRetriever.h */,
 				F2D24E141A32032000046005 /* DiscInformationRetriever.m */,
+				F20BC08E1A35FC5B00848655 /* DiscImageTransformer.h */,
+				F20BC08F1A35FC5B00848655 /* DiscImageTransformer.m */,
+				F20BC0911A36078F00848655 /* DiscPathLocator.h */,
+				F20BC0921A36078F00848655 /* DiscPathLocator.m */,
+				F20BC0941A36091300848655 /* DiscPathWriter.h */,
+				F20BC0951A36091300848655 /* DiscPathWriter.m */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -331,11 +346,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F20BC0901A35FC5B00848655 /* DiscImageTransformer.m in Sources */,
 				F2CAC5191A2CF2600070F099 /* ViewController.m in Sources */,
 				F2CAC5161A2CF2600070F099 /* AppDelegate.m in Sources */,
 				F2CAC5131A2CF2600070F099 /* main.m in Sources */,
+				F20BC0931A36078F00848655 /* DiscPathLocator.m in Sources */,
 				F2CAC53C1A2CF5250070F099 /* TFHpple.m in Sources */,
 				F2CAC5411A2CF6780070F099 /* XPathQuery.m in Sources */,
+				F20BC0961A36091300848655 /* DiscPathWriter.m in Sources */,
 				F2CAC5461A2CF7AC0070F099 /* Disc.m in Sources */,
 				F2D24E151A32032000046005 /* DiscInformationRetriever.m in Sources */,
 				F2CAC53D1A2CF5250070F099 /* TFHppleElement.m in Sources */,
