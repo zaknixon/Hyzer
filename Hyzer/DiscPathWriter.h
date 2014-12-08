@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Disc.h"
 
 @interface DiscPathWriter : NSObject
+
+- (void) writeDisc:(Disc *) disc withCoordinates:(NSArray *) coordinates toPath:(NSString *) path;
 
 @end

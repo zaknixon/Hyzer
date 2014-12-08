@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface DiscPathLocator : NSObject
+
+
+- (NSArray *) pathContainedInImage:(UIImage *) pathImage;
 
 @end

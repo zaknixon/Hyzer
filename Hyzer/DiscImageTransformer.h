@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface DiscImageTransformer : NSObject
+
+- (UIImage *) transform:(UIImage *) originalImage;
 
 @end

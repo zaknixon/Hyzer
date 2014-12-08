@@ -10,4 +10,11 @@
 
 @implementation DiscPathLocator
 
+- (NSArray *) pathContainedInImage:(UIImage *) pathImage{
+    NSArray *coordinates = nil;
+    
+    
+    return coordinates;
+}
+
 @end

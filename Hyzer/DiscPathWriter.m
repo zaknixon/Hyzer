@@ -10,4 +10,21 @@
 
 @implementation DiscPathWriter
 
+- (void) writeDisc:(Disc *) disc withCoordinates:(NSArray *) coordinates toPath:(NSString *) path{
+    
+    NSLog(@"Disc information was written to:%@",path);
+    
+    NSError *error;
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:disc
+                                                       options:kNilOptions
+                                                         error:&error];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *appFile = [documentsDirectory stringByAppendingPathComponent:path];
+    [jsonData writeToFile:appFile atomically:YES];
+    NSLog(@"Written to:%@",appFile);
+}
+
 @end
