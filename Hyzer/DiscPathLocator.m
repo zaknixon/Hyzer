@@ -11,7 +11,16 @@
 @implementation DiscPathLocator
 
 - (NSArray *) pathContainedInImage:(UIImage *) pathImage{
-    NSArray *coordinates = nil;
+    NSMutableArray *coordinates = [NSMutableArray array];
+    
+    
+    for(int i = 0; i < 200; i++){
+        for(int j  = 0; j < 200; j++){
+            //NSValue *value = [NSValue valueWithCGPoint:CGPointMake(i,j)];
+            NSString *coordinate = [NSString stringWithFormat:@"(%i,%i)",i,j];
+            [coordinates addObject:coordinate];
+        }
+    }
     
     
     return coordinates;

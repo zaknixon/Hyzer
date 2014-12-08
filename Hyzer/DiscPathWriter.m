@@ -16,7 +16,12 @@
     
     NSError *error;
     
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:disc
+    NSMutableDictionary *discInformation = [NSMutableDictionary dictionary];
+    discInformation[@"name"] = disc.name;
+    discInformation[@"manufacturer"] = disc.manufacturer;
+    discInformation[@"coordinates"] = coordinates;
+
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:discInformation
                                                        options:kNilOptions
                                                          error:&error];
     
