@@ -77,11 +77,21 @@
     }
     
     for(Disc *d in discCatalog){
-        NSString *stringURL = [NSString stringWithFormat:IMAGE_URL,d.imageId];
-        NSURL  *url = [NSURL URLWithString:stringURL];
-        NSData *urlData = [NSData dataWithContentsOfURL:url];
-        currentDisc.flightPathImage = [UIImage imageWithData:urlData];
-        NSLog(@"Data pulled for %@-%@",d.manufacturer,d.name);
+        
+        NSString *fileName = [NSString stringWithFormat:@"%@-%@.png",d.manufacturer,d.name];
+        
+        // Figuring out if the file already exists in the documents directory.
+        NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString* foofile = [documentsPath stringByAppendingPathComponent:fileName];
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:foofile];
+        
+        if(!fileExists){
+            NSString *stringURL = [NSString stringWithFormat:IMAGE_URL,d.imageId];
+            NSURL  *url = [NSURL URLWithString:stringURL];
+            NSData *urlData = [NSData dataWithContentsOfURL:url];
+            currentDisc.flightPathImage = [UIImage imageWithData:urlData];
+            NSLog(@"Data pulled for %@-%@",d.manufacturer,d.name);
+        }
     }
     
     completion(discCatalog);
