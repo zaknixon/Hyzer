@@ -16,6 +16,10 @@
 #define DISC_QUERY_XPATH @"//table[@id='inFlightGuide']/tbody/td"
 #define IMAGE_URL @"http://www.inboundsdiscgolf.com/content/WebCharts/%@.png"
 
+@interface DiscInformationRetriever()
+@property (nonatomic,strong) NSMutableArray *discCatalog;
+
+@end
 @implementation DiscInformationRetriever
 
 - (void)retrieveDiscsAndPerformBlock:(void (^)(NSArray *))completion{
@@ -30,7 +34,7 @@
     int counter = 0;
     Disc *currentDisc;
     
-    NSMutableArray *discCatalog = [NSMutableArray array];
+    self.discCatalog = [NSMutableArray array];
     for(TFHppleElement *element in tableRows){
         
         if(counter > numberOfElementsPerDisc){
@@ -39,7 +43,7 @@
         
         if(counter == 0){
             currentDisc = [[Disc alloc] init];
-            [discCatalog addObject:currentDisc];
+            [self.discCatalog addObject:currentDisc];
         }
         
         NSString *metadata = [[element firstChild] content];
@@ -76,7 +80,7 @@
         counter++;
     }
     
-    for(Disc *d in discCatalog){
+    for(Disc *d in self.discCatalog){
         
         NSString *fileName = [NSString stringWithFormat:@"%@-%@.png",d.manufacturer,d.name];
         
@@ -89,12 +93,13 @@
             NSString *stringURL = [NSString stringWithFormat:IMAGE_URL,d.imageId];
             NSURL  *url = [NSURL URLWithString:stringURL];
             NSData *urlData = [NSData dataWithContentsOfURL:url];
-            currentDisc.flightPathImage = [UIImage imageWithData:urlData];
+            d.flightPathImage = [UIImage imageWithData:urlData];
+            [urlData writeToFile:foofile atomically:YES];
             NSLog(@"Data pulled for %@-%@",d.manufacturer,d.name);
         }
     }
     
-    completion(discCatalog);
+    completion(self.discCatalog);
 }
 
 // Note: Very fragile.

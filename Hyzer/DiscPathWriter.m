@@ -17,6 +17,9 @@
     NSError *error;
     
     NSMutableDictionary *discInformation = [NSMutableDictionary dictionary];
+    
+    if(!disc.name) disc.name = @"";
+    
     discInformation[@"name"] = disc.name;
     discInformation[@"manufacturer"] = disc.manufacturer;
     discInformation[@"coordinates"] = coordinates;

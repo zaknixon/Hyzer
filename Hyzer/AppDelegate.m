@@ -35,6 +35,7 @@
         
         DiscImageTransformer *transformer = [[DiscImageTransformer alloc] init];
         for(Disc *disc in discs){
+            
             UIImage *transformedImage = [transformer transform:disc.flightPathImage];
             
             NSLog(@"Disc image was transformed for disc [%@-%@]",disc.manufacturer,disc.name);
@@ -47,10 +48,7 @@
             [pathWriter writeDisc:disc withCoordinates:coordinates toPath:path];
         }
     }];
-    
-    
-    
-    
+
     return YES;
 }
 
@@ -114,83 +112,6 @@
 //        }
 //    }
 }
-
-- (void)logPixelsOfImage:(UIImage*)image {
-    // 1. Get pixels of image
-    CGImageRef inputCGImage = [image CGImage];
-    NSUInteger width = CGImageGetWidth(inputCGImage);
-    NSUInteger height = CGImageGetHeight(inputCGImage);
-    
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * width;
-    NSUInteger bitsPerComponent = 8;
-    
-    UInt32 * pixels;
-    pixels = (UInt32 *) calloc(height * width, sizeof(UInt32));
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pixels, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast|kCGBitmapByteOrder32Big);
-    
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), inputCGImage);
-    
-    CGColorSpaceRelease(colorSpace);
-    CGContextRelease(context);
-    
-#define Mask8(x) ( (x) & 0xFF )
-#define R(x) ( Mask8(x) )
-#define G(x) ( Mask8(x >> 8 ) )
-#define B(x) ( Mask8(x >> 16) )
-    
-    // 2. Iterate and log!
-    UInt32 * currentPixel = pixels;
-    NSUInteger y =0;
-    for (NSUInteger j = 0; j < height; j++) {
-        
-        NSUInteger startX = 0,endX = 0,finalX = 0;
-        UInt32 previousColor;
-        y = 0;
-        for (NSUInteger i = 0; i < width; i++) {
-            UInt32 color = *currentPixel;
-            
-            float brightness = (R(color)+G(color)+B(color))/3.0;
-            if(i < 30 && height-j < 30){
-                continue;
-            }
-            
-            if((brightness < 255.0 && brightness != 0)){
-                y = j;
-                
-                if(startX == 0){
-                    startX = i;
-                }
-                
-            }
-            
-            if(brightness == 255.0 && startX != 0){
-                endX = i;
-                
-                NSUInteger median =  ((endX - startX) / 2);
-                finalX = startX + median;
-                NSLog(@" %lu   %lu",finalX,j);
-
-                startX = 0;
-                endX = 0;
-            }
-            currentPixel++;
-        }
-    }
-    
-    free(pixels);
-    
-#undef R
-#undef G
-#undef B
-    
-}
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
