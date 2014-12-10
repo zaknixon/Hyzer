@@ -43,7 +43,13 @@
         
         if(counter == 0){
             currentDisc = [[Disc alloc] init];
-            [self.discCatalog addObject:currentDisc];
+            
+            
+            if([self.discCatalog count] > 0){
+                break;
+            }else{
+                [self.discCatalog addObject:currentDisc];
+            }
         }
         
         NSString *metadata = [[element firstChild] content];
@@ -96,7 +102,11 @@
             d.flightPathImage = [UIImage imageWithData:urlData];
             [urlData writeToFile:foofile atomically:YES];
             NSLog(@"Data pulled for %@-%@",d.manufacturer,d.name);
+        }else{
+            UIImage *i = [UIImage imageWithContentsOfFile:foofile];
+            d.flightPathImage = i;
         }
+        
     }
     
     completion(self.discCatalog);

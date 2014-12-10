@@ -70,6 +70,9 @@
                 finalX = startX + median;
                 
                 NSString *coordinate = [NSString stringWithFormat:@" %lu   %lu",finalX,j ];
+                
+//                NSLog(@"%lu",finalX);
+//                NSLog(@"%lu",j);
                 [coordinates addObject:coordinate];
                 
                 startX = 0;

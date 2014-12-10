@@ -62,7 +62,9 @@
             // or use the UIImage wherever you like
             newImage = [UIImage imageWithCGImage:imageRef];
             CGImageRelease(imageRef);
-            
+    
+            transformedImage = newImage;
+    
 //            NSData *imageData = UIImagePNGRepresentation(newImage);
 //            fileName = [NSString stringWithFormat:@"%@-%@44.png",d.manufacturer,d.name];
 //            appFile = [documentsDirectory stringByAppendingPathComponent:fileName];
