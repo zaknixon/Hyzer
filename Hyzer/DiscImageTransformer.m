@@ -32,7 +32,7 @@
             [exposure setValue:[[CIImage alloc] initWithImage:transformedImage] forKey:kCIInputImageKey];
             [exposure setValue:@0.9 forKey:@"inputEV"];
             CIImage *result = [exposure valueForKey: kCIOutputImageKey];
-            
+
             for(int i = 0; i < 45; i++){
                 CIFilter *lighten = [CIFilter filterWithName:@"CIColorControls"];
                 [lighten setDefaults];
@@ -41,13 +41,14 @@
                 result = [lighten valueForKey: kCIOutputImageKey];
                 
             }
-            
-            for(int i = 0; i < 15; i++){
-                CIFilter *sepia = [CIFilter filterWithName:@"CISepiaTone"];
-                [sepia setValue:[[CIImage alloc] initWithImage:transformedImage] forKey:kCIInputImageKey];
-                [sepia setValue:@(0.75) forKey:@"inputIntensity"];
-            }
-            
+    
+//            for(int i = 0; i < 15; i++){
+//                CIFilter *sepia = [CIFilter filterWithName:@"CISepiaTone"];
+//                [sepia setValue:[[CIImage alloc] initWithImage:transformedImage] forKey:kCIInputImageKey];
+//                [sepia setValue:@(0.75) forKey:@"inputIntensity"];
+//                result = [sepia valueForKey:kCIOutputImageKey];
+//            }
+    
             transformedImage = [UIImage imageWithCIImage:result];
             
             UIGraphicsBeginImageContext(transformedImage.size);
