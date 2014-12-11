@@ -69,10 +69,12 @@
                 NSUInteger median =  ((endX - startX) / 2);
                 finalX = startX + median;
                 
-                NSString *coordinate = [NSString stringWithFormat:@" %lu   %lu",finalX,j ];
+                NSUInteger finalY = height - j;
+                
+                NSString *coordinate = [NSString stringWithFormat:@" %lu   %lu",finalX,finalY ];
                 
 //                NSLog(@"%lu",finalX);
-//                NSLog(@"%lu",j);
+//                NSLog(@"%lu",finalY);
                 [coordinates addObject:coordinate];
                 
                 startX = 0;
