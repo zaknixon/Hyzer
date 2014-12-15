@@ -42,10 +42,12 @@
     // 2. Iterate and log!
     UInt32 * currentPixel = pixels;
     NSUInteger y =0;
-    for (NSUInteger j = 0; j < height; j++) {
-        
+
+    for (NSUInteger j = 0; j < height - 28; j++) {
         NSUInteger startX = 0,endX = 0,finalX = 0;
         y = 0;
+        NSMutableString *output = [NSMutableString string];
+
         for (NSUInteger i = 0; i < width; i++) {
             UInt32 color = *currentPixel;
             
@@ -53,6 +55,10 @@
             if(i < 30 && height-j < 30){
                 continue;
             }
+            
+            NSString *b = (brightness == 255.0)?@"-":@"X";
+            NSString *v = [NSString stringWithFormat:@"%@",b];
+            [output appendString:v];
             
             if((brightness < 255.0 && brightness != 0)){
                 y = j;
@@ -82,6 +88,8 @@
             }
             currentPixel++;
         }
+        NSLog(@"%@",output);
+    
     }
     
     free(pixels);
