@@ -44,9 +44,38 @@
             DiscPathLocator *pathLocator = [[DiscPathLocator alloc] init];
             NSArray *coordinates = [pathLocator pathContainedInImage:transformedImage];
             
-            for(NSString *coordinate in coordinates){
-                NSLog(@"%@",coordinate);
+            NSMutableString *output = [NSMutableString string];
+            for(int i = 0; i < transformedImage.size.height;i++){
+                output = [NSMutableString string];
+                for(int j = 0; j < transformedImage.size.width;j++){
+                    
+                    BOOL found = NO;
+                    for(int k = 0; k < [coordinates count]; k++){
+                        
+                        NSValue *ptValue = coordinates[k];
+                        CGPoint pt = [ptValue CGPointValue];
+                        
+                        if(pt.x == i && pt.y == j){
+                            found = YES;
+                            break;
+                        }
+                        
+                    }
+                    
+                    if(found){
+                       [output appendString:@"X"];
+                    }else{
+                        [output appendString:@"-"];
+                    }
+ 
+                }
+               NSLog(@"%@",output);
             }
+            
+            
+            
+            
+            
             
             DiscPathWriter *pathWriter = [[DiscPathWriter alloc] init];
             NSString *path = [NSString stringWithFormat:@"%@-%@.json",disc.manufacturer,disc.name];

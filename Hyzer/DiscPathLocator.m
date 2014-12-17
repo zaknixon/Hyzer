@@ -16,6 +16,7 @@
 @implementation DiscPathLocator
 
 - (NSArray *) pathContainedInImage:(UIImage *) pathImage{
+    
     NSMutableArray *coordinates = [NSMutableArray array];
 
     CGImageRef inputCGImage = [pathImage CGImage];
@@ -44,57 +45,47 @@
     NSUInteger y =0;
 
     for (NSUInteger j = 0; j < height - 28; j++) {
+        
         NSUInteger startX = 0,endX = 0,finalX = 0;
         y = 0;
         NSMutableString *output = [NSMutableString string];
-
         for (NSUInteger i = 0; i < width; i++) {
             UInt32 color = *currentPixel;
             
             float brightness = (R(color)+G(color)+B(color))/3.0;
+            
             if(i < 30 && height-j < 30){
                 continue;
             }
             
             NSString *b = (brightness == 255.0)?@"-":@"X";
+            //NSString *b = [NSString stringWithFormat:@"%2.0f ",brightness];
             NSString *v = [NSString stringWithFormat:@"%@",b];
             [output appendString:v];
             
-            if((brightness < 255.0 && brightness != 0)){
-                y = j;
-                
-                if(startX == 0){
-                    startX = i;
-                }
-                
-            }
-            
-            if(brightness == 255.0 && startX != 0){
+            if(brightness != 255.0 && startX == 0){
+                startX = i;
+            }else if(brightness == 255.0 && startX != 0){
                 endX = i;
+                finalX = startX + ((endX - startX)/2);
                 
-                NSUInteger median =  ((endX - startX) / 2);
-                finalX = startX + median;
-                
-                NSUInteger finalY = height - j;
-                
-                NSString *coordinate = [NSString stringWithFormat:@" %lu   %lu",finalX,finalY ];
-                
-//                NSLog(@"%lu",finalX);
-//                NSLog(@"%lu",finalY);
-                [coordinates addObject:coordinate];
-                
-                startX = 0;
-                endX = 0;
+                NSValue *coor = [NSValue valueWithCGPoint:CGPointMake(finalX,j)];
+                [coordinates addObject:coor];
             }
             currentPixel++;
         }
-        NSLog(@"%@",output);
-    
+        //NSLog(@"%@",output);
     }
     
     free(pixels);
 
     return coordinates;
 }
+
+    
+    
+    
+    
+    
 
 @end
