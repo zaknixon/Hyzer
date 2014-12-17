@@ -46,7 +46,7 @@
             
             NSMutableString *output = [NSMutableString string];
             for(int i = 0; i < transformedImage.size.height;i++){
-                output = [NSMutableString string];
+                //output = [NSMutableString string];
                 for(int j = 0; j < transformedImage.size.width;j++){
                     
                     BOOL found = NO;
@@ -55,7 +55,7 @@
                         NSValue *ptValue = coordinates[k];
                         CGPoint pt = [ptValue CGPointValue];
                         
-                        if(pt.x == i && pt.y == j){
+                        if(pt.x == j && pt.y == i){
                             found = YES;
                             break;
                         }
@@ -69,19 +69,31 @@
                     }
  
                 }
-               NSLog(@"%@",output);
+                [output appendString:@"\n"];
+               // NSLog(@"%@",output);
             }
             
-            
-            
-            
-            
+            NSString *pathToDrawnImage = [NSString stringWithFormat:@"%@-%@-plots.txt",disc.manufacturer,disc.name];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *appFile = [documentsDirectory stringByAppendingPathComponent:pathToDrawnImage];
+            [output writeToFile:appFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            NSLog(@"Wrote:%@",appFile);
             
             DiscPathWriter *pathWriter = [[DiscPathWriter alloc] init];
             NSString *path = [NSString stringWithFormat:@"%@-%@.json",disc.manufacturer,disc.name];
-            [pathWriter writeDisc:disc withCoordinates:coordinates toPath:path];
             
-            break;
+            
+            NSMutableArray *coordStrs = [NSMutableArray array];
+            
+            for(NSValue *v in coordinates){
+                CGPoint pt = [v CGPointValue];
+                NSString *ptStr = [NSString stringWithFormat:@"(%2.0f,%2.0f)",pt.x,pt.y];
+                [coordStrs addObject:ptStr];
+            }
+
+            [pathWriter writeDisc:disc withCoordinates:coordStrs toPath:path];
+
         }
     }];
 

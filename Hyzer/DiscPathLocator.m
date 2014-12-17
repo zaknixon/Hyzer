@@ -48,7 +48,6 @@
         
         NSUInteger startX = 0,endX = 0,finalX = 0;
         y = 0;
-        NSMutableString *output = [NSMutableString string];
         for (NSUInteger i = 0; i < width; i++) {
             UInt32 color = *currentPixel;
             
@@ -57,12 +56,7 @@
             if(i < 30 && height-j < 30){
                 continue;
             }
-            
-            NSString *b = (brightness == 255.0)?@"-":@"X";
-            //NSString *b = [NSString stringWithFormat:@"%2.0f ",brightness];
-            NSString *v = [NSString stringWithFormat:@"%@",b];
-            [output appendString:v];
-            
+
             if(brightness != 255.0 && startX == 0){
                 startX = i;
             }else if(brightness == 255.0 && startX != 0){
@@ -71,10 +65,12 @@
                 
                 NSValue *coor = [NSValue valueWithCGPoint:CGPointMake(finalX,j)];
                 [coordinates addObject:coor];
+                startX = 0;
+                endX = 0;
             }
+
             currentPixel++;
         }
-        //NSLog(@"%@",output);
     }
     
     free(pixels);
@@ -82,10 +78,5 @@
     return coordinates;
 }
 
-    
-    
-    
-    
-    
 
 @end

@@ -43,13 +43,13 @@
         
         if(counter == 0){
             currentDisc = [[Disc alloc] init];
+            [self.discCatalog addObject:currentDisc];
             
-            
-            if([self.discCatalog count] > 0){
-                break;
-            }else{
-                [self.discCatalog addObject:currentDisc];
-            }
+//            if([self.discCatalog count] > 0){
+//                break;
+//            }else{
+//                [self.discCatalog addObject:currentDisc];
+//            }
         }
         
         NSString *metadata = [[element firstChild] content];
